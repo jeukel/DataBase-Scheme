@@ -1,0 +1,14 @@
+#lang racket
+;;'(Select name for new/old database)
+;eval (bdatos)
+;open-output-file bdatos [append?]
+;(define ct(
+;  (lambda(bdatos)
+;    (cond ((input-port? (open-input-file bdatos))) (open-input-file bdatos))
+;    '(Derp)
+;    )
+;  )
+
+;(define nuevo '(You are dumb))
+(define leer 
+  (read-line))
