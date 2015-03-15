@@ -1,20 +1,4 @@
 #lang racket
-;;'(Select name for new/old database)
-;eval (bdatos)
-;open-output-file bdatos [append?]
-;(define ct(=
-;  (lambda(bdatos)
-;    (cond ((input-port? (open-input-file bdatos))) (open-input-file bdatos))
-;    '(Derp)
-;    )
-;  )
-
-;(define nuevo '(You are dumb))
-
-;(define leer 
-; (read-line))
-
-
 
 ;la siguiente funcion tiene como objetivo crear una tabla (archivo)
 ;Primero tiene que recibir dos parametros 1) el nombre (string) 2) una lista de de nombres de columnas
@@ -22,27 +6,30 @@
 ;Recursivamente, tiene que ir escribiendo los nombres de las columnas al archivo (esto con car y cdr para
 ;el manejo de la lista)
 
-(define ct
-  (lambda (x y)
-    (cond 
-      ((string? x)(cond
-                    ((not (input-port? x) )
-                     (open-output-file x)
-                     (cond 
-                       ((list? y)(cond 
-                                     ((empty? y) (ct x (cdr y)))                                    
-                                    ))                  
-                       )
-                     )
-                    )
-                   (open-input-file x)
-                    (cond 
-                      ((list? y)(cond 
-                                   ((not (empty?(cdr y))) (ct x (cdr y)))                                    
-                                   ))                   
-                      )
-                  )
-      )
-    #f
-    )
+
+(define (ct x y)(cond 
+                  ((string? x)(cond 
+                                ((file-exists? x) '(Fichero ya existe))
+                                (else (cond 
+                                        ((list? y )(cond
+                                                     ((empty? y) '(Lista vacia))
+                                                     (else (ct-aux y x))
+                                                     )
+                                                   
+                                                   )
+                                        (else '(Favor ingrese una lista))
+                                        )                                            
+                                      ))
+                              )
+                  (else '(Ingrese nombre valido))
+                  );cond1
+  );define
+
+(define (ct-aux pWhat pWhereTo)
+   (cond 
+     ((empty? pWhat))
+     (else (write-to-file (car pWhat) pWhereTo #:mode'text #:exists'append )
+           (write-to-file '_  pWhereTo #:mode'text #:exists'append )
+                           (ct-aux (cdr pWhat) pWhereTo))
+     )
   )
