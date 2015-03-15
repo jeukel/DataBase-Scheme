@@ -33,3 +33,23 @@
                            (ct-aux (cdr pWhat) pWhereTo))
      )
   )
+
+
+;ins tabla (col ... coln)value ... valuen
+
+(define (ins pTablaNom pColList pValList)(cond((and (and (file-exists? pTablaNom)(list? pColList)) (list? pValList)))
+                                              )
+  )
+
+(define (InFile pTabla) (call-with-input-file pTabla))
+
+;Checks if the unique ID name exists.
+(define (verificadorDeID pTabla pID)((member pID (string-split (read-line (InFile pTabla))"_"))))
+
+;Checks existant ID.
+;receives a list and searches for a existant IDvalue in the first column.
+(define (existsID? list pIDVal)(cond
+                                    ((empty? list) '(finished))
+                                    ((equal? pIDVal (car(string-split (car list) "_"))) '(Found existant ID))
+                                    (else (existsID? (cdr(cdr list)) pIDVal))
+                                    ))
