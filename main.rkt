@@ -8,7 +8,7 @@
                                                                                                            (car(cdr(cdr( string-split ls )))) 
                                                                                                            (cdr(cdr(cdr( string-split ls )))) 
                                                                                                       )
-                                                           (else ins( alt_list( (cdr(cdr(cdr(string-split ls )))) 1 )
+                                                           (ins( alt_list( (cdr(cdr(cdr(string-split ls )))) 1 )
                                                                                alt_list( (cdr(cdr(cdr(string-split ls )))) 2 )
                                                                     )
                                                            )
@@ -26,25 +26,27 @@
 ;)
 
 (define ct (lambda (x y) (+ x y))
-  )
+  ) 
 
 (define ins (lambda (x y) (+ x y))
   )
 
 (define (alt_list ls n)
-  (list a)
   (cond(
-        (= n 1) (cons a (alt_list_aux(a ls))                    
-        (= n 2) ()
+        (= n 1) (cons '() ( alt_list_aux( string-split ls ) ))                    
+        (= n 2) (cons '() ( alt_list_aux(cdr( string-split ls ))) )
+        "No such option"
        )
   )
 )
 
 (define (alt_list_aux a ls)
-  (if(
-       (integer? lenght (ls) )
-       (cons a (car (string-split ls )))
-       (cons a (car(string-split ls)) )
+  (cond(
+       (integer? (/ (length ls) 2) ) (car (alt_list_aux a (cdr (string-split ls ))))
+                               (car (alt_list_aux a (cdr
+                                                    (cdr (string-split ls )))
+                                     )
+            )
       )
    )
 )
