@@ -42,24 +42,26 @@
 
 (define (alt_list_aux a ls)
   (cond(
-       (integer? (/ (length ls) 2) ) (car (alt_list_aux a (cdr (string-split ls ))))
-                               (car (alt_list_aux a (cdr
-                                                    (cdr (string-split ls )))
-                                     )
-            )
-      )
-   )
+        (integer? (/ (length ls) 2) ) (car (alt_list_aux a (cdr (string-split ls ))))
+        (car (alt_list_aux a (cdr(cdr (string-split ls )))))
+       )
+  )
 )
 
+(define (cut ls n)
+  (list-ref (string-split ls) n)
+)
   
-(define (test1 s)
+(define (test s)
   (cond (
-         (= s 1)(main "ct estud carnet nombre telefono")
-         (= s 2)(main"ins estud 2012001 julio 5554444")
-         (= s 3)(main"ins estud (nombre carnet) maria 2010002")
-         (= s 4)(main"sel matricula (carnet nota) siglaCur ce3104")
-         (= s 5)(main"act estud 2012001 nombre julio")
-         (= s 6)(main"act estud 2010002 telefono 5557777 nombre marta")
+         ((= s 1)(cut "act estud 2010002 telefono 5557777 nombre marta" 2))
+         ((= s 2)(main "ins estud 2012001 julio 5554444"))
+         ((= s 3)(main "ct estud carnet nombre telefono"))
+         ((= s 4)(main "ins estud (nombre carnet) maria 2010002"))
+         ((= s 5)(main "sel matricula (carnet nota) siglaCur ce3104"))
+         ((= s 6)(main "act estud 2012001 nombre julio"))
+         ((= s 7)(main "act estud 2010002 telefono 5557777 nombre marta"))
+         
         )
   )
 ) 
