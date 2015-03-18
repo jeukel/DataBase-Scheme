@@ -2,8 +2,8 @@
 
 (define (main ls)
       (cond (
-        (string=? ( car(string-split ls ) ) "ct")   (ct (car(cdr( string-split ls ))) (cdr (cdr (string-split ls ))))      
-        (string=? (car( string-split ls )) "ins")   (cond(
+        ((string=? ( car(string-split ls ) ) "ct")   (ct (car(cdr( string-split ls ))) (cdr (cdr (string-split ls )))))
+        ((string=? (car( string-split ls )) "ins")   (cond(
                                                            (list? (cdr(cdr(cdr( string-split ls ))))) (ins (car(cdr( string-split ls ))) 
                                                                                                            (car(cdr(cdr( string-split ls )))) 
                                                                                                            (cdr(cdr(cdr( string-split ls )))) 
@@ -13,7 +13,9 @@
                                                                     )
                                                            )
                                                          )
-                                                     )
+                                                     ))
+        ((string=? ( car(string-split ls ) ) "sel")   (ct (car(cdr( string-split ls ))) (cdr (cdr (string-split ls )))))
+        ((string=? ( car(string-split ls ) ) "act")   (ct (car(cdr( string-split ls ))) (cdr (cdr (string-split ls )))))
             )
       ) 
 )
