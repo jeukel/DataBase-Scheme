@@ -35,8 +35,8 @@
 
 (define (alt_list ls n)
   (cond(
-        (= n 1) (cons '() ( alt_list_aux( string-split ls ) ))                    
-        (= n 2) (cons '() ( alt_list_aux(cdr( string-split ls ))) )
+        ((= n 1) (cons '() ( alt_list_aux( string-split ls ) )))
+        ((= n 2) (cons '() ( alt_list_aux(cdr( string-split ls ))) ))
         "No such option"
        )
   )
@@ -56,7 +56,7 @@
   
 (define (test s)
   (cond (
-         ((= s 1)(cut "act estud 2010002 telefono 5557777 nombre marta" 2))
+         ((= s 1)(cut "act estud 2010002 telefono 5557777 nombre marta" 3))
          ((= s 2)(main "ins estud 2012001 julio 5554444"))
          ((= s 3)(main "ct estud carnet nombre telefono"))
          ((= s 4)(main "ins estud (nombre carnet) maria 2010002"))
