@@ -14,7 +14,10 @@
                                                            )
                                                          )
                                                      ))
-        ((string=? ( car(string-split ls ) ) "sel") ())
+        ((string=? ( car(string-split ls ) ) "sel") (sel (car(cdr( string-split ls ))) ;table name
+                                                         (car(cdr(cdr( string-split ls )))) ;cols o print
+                                                         (cdr(cdr(cdr( string-split ls )))) ;2 values list (col & val)
+                                                     ))
         ((string=? ( car(string-split ls ) ) "act") (act (car(cdr( string-split ls ))) 
                                                          (list (car(cdr(cdr( string-split ls )))) (alt_list_aux(cdr(cdr(cdr(string-split ls))))) )
                                                          (list (alt_list(cdr(cdr(cdr(string-split ls))))) )
