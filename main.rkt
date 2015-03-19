@@ -42,18 +42,18 @@
 (define (alt_list_aux ls)
   (cond(
         ((integer? (/ (length ls) 2) ) (car (alt_list_aux (cdr(cdr(string-split ls ))))))
-        (car (alt_list_aux a (cdr(cdr (string-split ls )))))
+        (car (alt_list_aux (cdr(cdr (string-split ls )))))
        )
   )
 )
 
-(define (cut ls n)
+(define (obtain_elem_index ls n)
   (list-ref (string-split ls) n)
 )
   
 (define (test s)
   (cond (
-         ((= s 1)(cut "act estud 2010002 telefono 5557777 nombre marta" 3))
+         ((= s 1)(obtain_elem_index "act estud 2010002 telefono 5557777 nombre marta" 3))
          ((= s 2)(main "ins estud 2012001 julio 5554444"))
          ((= s 3)(main "ct estud carnet nombre telefono"))
          ((= s 4)(main "ins estud (nombre carnet) maria 2010002"))
@@ -87,10 +87,3 @@
 
 (define sel (lambda (x y z) (+ (+ x y) z))
   )
-
-;(define (main_ins ls)
-  ;(cond(integer? (lenght(car(ls))/2))(ins car(ls) car(cdr(ls)))
-  ;(ins car(ls) car(cdr(ls)))
-  ;(main_ins(cdr(cdr(cdr(ls)))))
-  ;)
-;)
