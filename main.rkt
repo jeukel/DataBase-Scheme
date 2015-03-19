@@ -19,6 +19,10 @@
                                                          (list (car(cdr(cdr( string-split ls )))) (alt_list_aux(cdr(cdr(cdr(string-split ls))))) )
                                                          (list (alt_list(cdr(cdr(cdr(string-split ls))))) )
                                                      ))
+        ((string=? ( car(string-split ls) ) "boir") (boir (cdr (string-split ls))))
+        ((string=? ( car(string-split ls) ) "ir")   (ir   (cdr (string-split ls))))
+        ((string=? ( car(string-split ls) ) "bo")   (bo   (cdr (string-split ls))))
+        
             )
       ) 
 )
@@ -53,15 +57,29 @@
          ((= s 5)(main "sel matricula (carnet nota) siglaCur ce3104"))
          ((= s 6)(main "act estud 2012001 nombre julio"))
          ((= s 7)(main "act estud 2010002 telefono 5557777 nombre marta"))
-         
+         ((= s 8)(main "ir matricula carnetEst estud"))
+         ((= s 9)(main "boir matricula carnetEst estud"))
+         ((= s 10)(main "bo estud 2010002"))         
         )
   )
 )
+
+(define bo (lambda (x) (+ x 15))
+  )
+
+(define boir (lambda (x) (+ x 15))
+  )
+
+(define ir (lambda (x) (+ x 15))
+  )
 
 (define ct (lambda (x y) (+ x y))
   ) 
 
 (define ins (lambda (x y) (+ x y))
+  )
+
+(define act (lambda (x y z) (+ (+ x y) z))
   )
 
 (define sel (lambda (x y z) (+ (+ x y) z))
