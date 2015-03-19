@@ -2,49 +2,39 @@
 
 (define (main ls)
       (cond (
-        ((string=? ( car(string-split ls ) ) "ct")   (ct (car(cdr( string-split ls ))) (cdr (cdr (string-split ls )))))
-        ((string=? (car( string-split ls )) "ins")   (cond(
-                                                           (list? (cdr(cdr(cdr( string-split ls ))))) (ins (car(cdr( string-split ls ))) 
+        ((string=? ( car(string-split ls) ) "ct")   (ct (car(cdr( string-split ls ))) (cdr (cdr (string-split ls )))))
+        ((string=? ( car(string-split ls) ) "ins")  (cond( 
+                                                           (list? (cdr(cdr(cdr( string-split ls ))))) (ins (car(cdr( string-split ls ))) ;if & body
                                                                                                            (car(cdr(cdr( string-split ls )))) 
                                                                                                            (cdr(cdr(cdr( string-split ls )))) 
                                                                                                       )
-                                                           (ins( alt_list( (cdr(cdr(cdr(string-split ls )))) 1 )
-                                                                               alt_list( (cdr(cdr(cdr(string-split ls )))) 2 )
-                                                                    )
+                                                           (ins( (alt_list( (cdr(cdr(cdr(string-split ls )))) 1 )) ;else
+                                                                 (alt_list( (cdr(cdr(cdr(string-split ls )))) 2 ))
+                                                                )
                                                            )
                                                          )
                                                      ))
-        ((string=? ( car(string-split ls ) ) "sel")   (ct (car(cdr( string-split ls ))) (cdr (cdr (string-split ls )))))
-        ((string=? ( car(string-split ls ) ) "act")   (ct (car(cdr( string-split ls ))) (cdr (cdr (string-split ls )))))
+        ((string=? ( car(string-split ls ) ) "sel") ())
+        ((string=? ( car(string-split ls ) ) "act") (act (car(cdr( string-split ls ))) 
+                                                         (list (car(cdr(cdr( string-split ls )))) (alt_list_aux(cdr(cdr(cdr(string-split ls))))) )
+                                                         (list (alt_list(cdr(cdr(cdr(string-split ls))))) )
+                                                     ))
             )
       ) 
 )
 
-;(define (main_ins ls)
-  ;(cond(integer? (lenght(car(ls))/2))(ins car(ls) car(cdr(ls)))
-  ;(ins car(ls) car(cdr(ls)))
-  ;(main_ins(cdr(cdr(cdr(ls)))))
-  ;)
-;)
-
-(define ct (lambda (x y) (+ x y))
-  ) 
-
-(define ins (lambda (x y) (+ x y))
-  )
-
 (define (alt_list ls n)
   (cond(
-        ((= n 1) (cons '() ( alt_list_aux( string-split ls ) )))
-        ((= n 2) (cons '() ( alt_list_aux(cdr( string-split ls ))) ))
-        "No such option"
+        ((= n 1) (( alt_list_aux( string-split ls ) )))
+        ((= n 2) (( alt_list_aux( cdr( string-split ls ))) ))
+        ('()) ;"No such option"
        )
   )
 )
 
-(define (alt_list_aux a ls)
+(define (alt_list_aux ls)
   (cond(
-        (integer? (/ (length ls) 2) ) (car (alt_list_aux a (cdr (string-split ls ))))
+        ((integer? (/ (length ls) 2) ) (car (alt_list_aux (cdr(cdr(string-split ls ))))))
         (car (alt_list_aux a (cdr(cdr (string-split ls )))))
        )
   )
@@ -66,4 +56,20 @@
          
         )
   )
-) 
+)
+
+(define ct (lambda (x y) (+ x y))
+  ) 
+
+(define ins (lambda (x y) (+ x y))
+  )
+
+(define sel (lambda (x y z) (+ (+ x y) z))
+  )
+
+;(define (main_ins ls)
+  ;(cond(integer? (lenght(car(ls))/2))(ins car(ls) car(cdr(ls)))
+  ;(ins car(ls) car(cdr(ls)))
+  ;(main_ins(cdr(cdr(cdr(ls)))))
+  ;)
+;)
