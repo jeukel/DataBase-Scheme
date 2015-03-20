@@ -1,0 +1,38 @@
+#lang racket
+;Si un valor es igual al
+(define act(tabla ls_valores ls_columnas) ;indice ls_val corresponde a con ls_col en + 1.
+  (cond (; max para todas las posiciones de la lista
+          ((string=? (car(file)) (car(ls_columnas))) (obtain_index((+ 0 1)(cdr(file))(car(ls_columnas)))))
+          (escritura(id)) ;METODO QUE POR ID ESCRIBA EN CASILLA id = (car ls1)
+        )
+  )
+)
+
+;recorre la fila 1 buscando nombre de columna (no hay limite de recursión)
+(define obtain_index(a b c); a var ,b file, c val
+  (cond (
+          ( (string=? car(b) c ) (a) )
+          (obtain_index ((+ a 1) cdr(b) c))
+        )
+  )
+)
+
+;compara el valor de la columna 
+(define sel (tabla list_col list_comp)
+  (cond( 
+          ((string=? ( list-ref list_comp 0) (list-ref (file) (obtain_index((+ 1 0) (file) (list-ref list_comp 1)))) ) );file es la fila
+          ;(list (metodo (col1))(metodo (col2))))          
+        )
+   )
+)
+
+;(define metodo()
+;  max((cons (list-ref(file)) obtain_index(col1))(cons (list-ref(file)) obtain_index(col2)))
+;  )
+
+;  TO DO
+;
+;- hacerle max a ACT
+;- metodo de escritura
+;- ponerle limite si !col en obtain
+;- metodo de creación de lista para devolver.
