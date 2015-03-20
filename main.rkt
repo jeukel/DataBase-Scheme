@@ -39,6 +39,7 @@
         [(string=? ( car(string-split ls) ) "boir") (boir (cdr (string-split ls)))]
         [(string=? ( car(string-split ls) ) "ir")   (ir   (cdr (string-split ls)))]
         [(string=? ( car(string-split ls) ) "bo")   (bo   (cdr (string-split ls)))]
+        [(superiorMain)]
       ) 
 )
 
@@ -67,6 +68,16 @@
             [else (append jmp (alt_list (cdr(cdr ls )) jmp ))]
           )]
   )
+)
+
+(define (superiorMain)
+  (let ([x (read-line)]) (cond
+                           [(equal? x "exit") "Bye bye"]
+                           [else (cond
+                                   [(string? x) (main x )]
+                                   [else (superiorMain)]
+                                   )]
+                         ))
 )
 
 (define (obtain_elem_index ls n)
