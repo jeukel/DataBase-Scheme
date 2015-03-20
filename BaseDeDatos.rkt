@@ -24,6 +24,7 @@
                 )
     (else #f)
     );cond1
+  (wNL x)
   );define
 
 (define (ct-aux pWhat pWhereTo)
@@ -33,16 +34,11 @@
            (write-to-file '_  pWhereTo #:mode'text #:exists'append )
            (ct-aux (cdr pWhat) pWhereTo))
      )
-   (wNL pWhereTo)
   )
 
 ;Escribe una nueva linea.
 (define (wNL pWhereTo)
-  
-  (newline (open-output-file pWhereTo #:mode'text #:exists'append))
-  ;(close-output-port (open-output-file pWhereTo #:mode'text #:exists'append))
-  
-  )
+  (call-with-output-file pWhereTo newline  #:exists 'append))
 
 ;ins tabla (col ... coln)value ... valuen
 (define (ins pTablaNom pColList pValList)
@@ -57,6 +53,7 @@
       (existsID? (cdr(file->lines pTablaNom))(car pValList)))
      (ins-aux pTablaNom 
               (string-split (string-replace(string-replace (string-replace(car (file->lines pTablaNom))"\"" "_") "___" "_")"__""_") "_") pColList pValList 0)
+     (wNL pTablaNom)
      )
     )
   )
@@ -86,7 +83,6 @@
                                                         (write-to-file '_  pTabla #:mode'text #:exists'append )
                                                         (ins-aux  pTabla  (cdr pTablaList)  pColList  pValList 1))                                             
                                                        )
-  (wNL pTabla)
   )
 
 ;Checks if the unique ID name exists.
