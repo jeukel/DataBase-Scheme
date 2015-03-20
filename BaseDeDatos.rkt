@@ -145,3 +145,16 @@
                                                                          )
   )
 ;(replaceValues (lineFormat(list(car(file->lines "Luis2.txt"))) '("Carne" "Nom") (lineFormat (list (list-ref (file->lines "Luis2.txt")(lineIndex? (file->lines "Luis2.txt") "04" 0)))) '("03" "Aasdsa") empty )
+
+
+(define (proc x y z) 
+              (list `lambda y
+                    z                                    
+                    )
+)
+
+(define (proc2 y) (list `lambda `(x)
+                        (list `- (list y `(+ x 2))
+                              (list y `x))
+                        )
+  )
