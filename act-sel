@@ -20,7 +20,7 @@
 ;compara el valor de la columna 
 (define sel (tabla list_col list_comp)
   (cond( 
-          ((string=? ( list-ref list_comp 0) (list-ref (file) (obtain_index((+ 1 0) (file) (list-ref list_comp 1)))) ) );file es la fila
+        ((string=? ( list-ref list_comp 0) (list-ref (string-split (string-replace(string-replace (string-replace(car (file->lines tabla))"\"" "_") "___" "_")"__""_") "_") (obtain_index((+ 1 0) (string-split (string-replace(string-replace (string-replace(car (file->lines tabla))"\"" "_") "___" "_")"__""_") "_") (list-ref list_comp 1)))) ) );file es la fila
           ;(list (metodo (col1))(metodo (col2))))          
         )
    )
